@@ -2,29 +2,9 @@
 <!DOCTYPE html>
 <html>
 <body>
-<h1>Control LED light</h1>
-<p><input type="text" id="humidty" readonly>
-   <input type="text" id="temp" readonly>
-   <input type= "text" id="distance" readonly >
-</p>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
+<h1>Bonet Moncada Family</h1>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
 <script>
-var socket = io.connect('http://192.168.0.11'); //load socket.io-client and connect to the host that serves the page
-window.addEventListener("load", function(){ //when page loads
- /* alarm.addEventListener("change", function() { //add event listener for when checkbox changes
-    socket.emit("light", ""); //send button status to server (as 1 or 0)
-  });*/
-});
-/*socket.on('light', function (data) { //get button status from client
-  document.getElementById("humidity").value = data.humidity; //change checkbox according to push button on Raspberry Pi
-  document.getElementById("temp").value = data.temp; //change checkbox according to push button on Raspberry Pi
-  document.getElementById("distance").value = data.distance; //change checkbox according to push button on Raspberry Pi
-
-  socket.emit("turnoalarm",'yes'); //send push button status to back to server
-});*/
-document.getElementById("trig").addEventListener('click',function(){
-socket.emit("turonalarm", 'yes');
-});
 </script>
 </html>
 </body>
