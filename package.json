@@ -1,0 +1,27 @@
+{
+  "name": "pi",
+  "version": "1.0.0",
+  "description": "Test all the sensors",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pi"
+  ],
+  "author": "ebonet",
+  "license": "MIT",
+  "dependencies": {
+    "dht-sensor": "0.0.5",
+    "googleapis": "^30.0.0",
+    "i2c": "^0.2.3",
+    "i2c-bus": "^3.2.0",
+    "johnny-five": "^0.15.0",
+    "lcd": "^2.0.3",
+    "node-gyp": "^3.6.2",
+    "onoff": "^3.1.0",
+    "pigpio": "^1.0.0",
+    "raspi-sensors": "^0.2.11",
+    "socket.io": "^2.1.0"
+  }
+}
