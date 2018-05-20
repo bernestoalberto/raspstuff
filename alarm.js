@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var http = require('http').createServer(handler); //require http server, and create server with function handler()
 var fs = require('fs'); //require filesystem module
 var io = require('socket.io')(http) //require socket.io module and pass the http object (server)
@@ -174,7 +176,7 @@ let faren = 0.0;
        if(socalo){
        socalo.emit('turnonalarm',data);
            }
-    if(faren >= 77 ){
+    if(faren >= 81 ){
       console.log(`Uppppssssss hot hot. Turn on the AC is ${faren} F`);
       setInterval(function(){
            buzzy(1);
@@ -229,10 +231,10 @@ console.log('Alarm was switched off');
 
 function turnonalarm(){
 triggerRGB(0);
-setInterval(function(){
+/* setInterval(function(){
   Red.digitalWrite(0);
-},120000);
-
+},120000);*/
+ 'sudo node '
 }
 function exit(){
 buzzy(0);

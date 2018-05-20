@@ -12,6 +12,7 @@
   "author": "ebonet",
   "license": "MIT",
   "dependencies": {
+    "angular-cli": "^1.0.0-beta.28.3",
     "dht-sensor": "0.0.5",
     "googleapis": "^30.0.0",
     "i2c": "^0.2.3",
@@ -19,9 +20,15 @@
     "johnny-five": "^0.15.0",
     "lcd": "^2.0.3",
     "node-gyp": "^3.6.2",
+    "node-ir": "^1.0.2",
+    "node-record-lpcm16": "^0.3.0",
     "onoff": "^3.1.0",
     "pigpio": "^1.0.0",
+    "play-sound": "^1.1.2",
+    "pm2": "^2.10.4",
+    "pmx": "^1.6.4",
     "raspi-sensors": "^0.2.11",
-    "socket.io": "^2.1.0"
+    "socket.io": "^2.1.1",
+    "speaker": "^0.4.1"
   }
 }
