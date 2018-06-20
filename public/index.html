@@ -1,9 +1,22 @@
 
 <!DOCTYPE html>
-<html>
+<html lang ="en">
 <head>
+  <meta charset = "utf-8">
+  <meta http-equi v= "X-UA-Compatible" content ="IE=edge">
+  <meta name = "viewport" content =" width = device-width, initial-scale=1">
+  <title>EB Alarm</title>
 <link href ="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel ="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 <link rel ="stylesheet" href ="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <style type ="text/css">
+  #stream {
+    height: 99%;
+    margin: 0px auto;
+    display: block;
+    margin-top: 20px;
+  }
+  </style>
+
 </head>
 <body>
 <h1>Home Alarm    <i class ="material-icons md-48" >alarm </i></h1>
@@ -20,17 +33,27 @@
     <i class ="material-icons md-48"> highlight </i>
     <input type ="text" id ="light" readonly>
 ||
-   <button  id ="trig" >Turn On the Alarm </button>
+    <i class ="material-icons md-48"> settings_remote</i>
+    <input type ="text" id ="socalo" readonly>
+
+  <!--- <button  id ="trig" >Turn On the Alarm </button>-->
   ||
    <button  id ="off" >Turn Off the Alarm </button>
+   <button  id ="rgb_led" >Turn On the LED </button>
+   <button  id ="buzzer_button" >Pound the Buzer </button>
 
 </p>
-<video id ="player"  autoplay></video>
-<script src ="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
-<script src ="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script>
-navigator.permissions.query({name:'camera'}).then(function(result){
-if(result.state == 'granted'){
+ <div class = "container'>
+ <div class ="row">
+ <video id ="stream"></video>
+</div>
+ </div>
+  <!-- jQuery -->
+  <script src ="http://code.jquery.com/jquery.js"></script>
+ <script src ="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
+ <script src "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> <script>
+/* navigator.permissions.query({name:'camera'}).then(function(result){
+ if(result.state == 'granted'){
 
 }else if (result.state == 'prompt') {
 }
@@ -45,8 +68,7 @@ var handleSuccess = function(stream){
 player.srcObject = stream;
 } ;
 navigator.mediaDevices.getUserMedia({audio:true, video:true}).then(handleSuccess);
-
-
+*/
 var socket = io.connect('http://192.168.0.11:2500'); //load socket.io-client and connect to the host that serves the page
 window.addEventListener("load", function(){ //when page loads
  /* alarm.addEventListener("change", function() { //add event listener for when checkbox changes
@@ -58,25 +80,37 @@ socket.on('turnonalarm', function (data) { //get button status from client
   document.getElementById("humidity").value = data.humidity + '  %'; //change checkbox according to push button on Raspberry Pi
   document.getElementById("temp").value = data.temperature + ' F'; //change checkbox according to push button on Raspberry Pi
   document.getElementById("distance").value = data.distance + ' cm'; //change checkbox according to push button on Raspberry Pi
+     document.getElementById("socalo").value = data.socalo ; 
+  
    }
 //  socket.emit("turnoalarm",'yes'); //send push button status to back to server
 });
-document.getElementById("trig").addEventListener('click',function(){
+/*document.getElementById("trig").addEventListener('click',function(){
   console.log('Attemp to turn on the alarm');
 socket.emit("turnonalarm", 'yes');
-});
+});*/
 
 socket.on("light",function(data){
-
 document.getElementById("light").value = data;
-
 });
+
+socket.on('liveStream', function(url){
+$('#stream').attr('src',url);
+});
+
 
 document.getElementById("off").addEventListener('click', function(){
 socket.emit('turnofalarm', 'yes');
 });
+document.getElementById("rgb_led").addEventListener('click', function(){
+socket.emit('rgbLed','yes');
+});
 
-document.getElementById("engage").addEventListener('click', function(){
+document.getElementById("buzzer_button").addEventListener('click', function(){
+socket.emit('buzzer','yes');
+});
+
+/*document.getElementById("engage").addEventListener('click', function(){
 
 socket.emit('turnonalarm', 'yes');
 
@@ -98,10 +132,7 @@ function handleError(error) {
 
 navigator.mediaDevices.getUserMedia(constraints).
   then(handleSuccess).catch(handleError);
-
-
-
-
+*/
 </script>
 </html>
 </body>
